@@ -15,7 +15,7 @@ sleep 2
 if [ "$1" == "update" ];
 then
 	tmp_dir=".issent_wakha_daguis_t9ddart_ghina_ard_trmit_orra_tskert_zond_ism_yad_ikan_repo_gh_desktop_nk_achko_awldi_4ayad_yogguer_l'encrypting_n_2^10000_ghayad_aras_tinin_t''a.*\l7i?t_agmano_mohmad"
-	if ! git clone --quiet https://github.com/ombhd/Cleaner_42.git "$HOME"/"$tmp_dir" &>/dev/null;
+	if ! git clone --quiet https://github.com/jose0xd/Cleaner_42.git "$HOME"/"$tmp_dir" &>/dev/null;
 	then
 		sleep 0.5
 		echo -e "\033[31m\n           -- Couldn't update CCLEAN! :( --\033[0m"
@@ -35,7 +35,7 @@ then
 	exit 0
 fi
 #calculating the current available storage
-Storage=$(df -h "$HOME" | grep "$HOME" | awk '{print($4)}' | tr 'i' 'B')
+Storage=$(du -sh "$HOME" | grep "$HOME" | awk '{print($1)}' | tr 'i' 'B')
 if [ "$Storage" == "0BB" ];
 then
 	Storage="0B"
@@ -75,49 +75,33 @@ function clean {
 
 	echo -ne "\033[38;5;208m"
 
-	#42 Caches
-	clean_glob "$HOME"/Library/*.42*
-	clean_glob "$HOME"/*.42*
-	clean_glob "$HOME"/.zcompdump*
-	clean_glob "$HOME"/.cocoapods.42_cache_bak*
-
 	#Trash
-	clean_glob "$HOME"/.Trash/*
+	clean_glob "$HOME"/.local/share/Trash/*
 
 	#General Caches files
-	#giving access rights on Homebrew caches, so the script can delete them
-	/bin/chmod -R 777 "$HOME"/Library/Caches/Homebrew &>/dev/null
-	clean_glob "$HOME"/Library/Caches/*
-	clean_glob "$HOME"/Library/Application\ Support/Caches/*
+	clean_glob "$HOME"/.cache/*
 
 	#Slack, VSCode, Discord and Chrome Caches
-	clean_glob "$HOME"/Library/Application\ Support/Slack/Service\ Worker/CacheStorage/*
-	clean_glob "$HOME"/Library/Application\ Support/Slack/Cache/*
-	clean_glob "$HOME"/Library/Application\ Support/discord/Cache/*
-	clean_glob "$HOME"/Library/Application\ Support/discord/Code\ Cache/js*
-	clean_glob "$HOME"/Library/Application\ Support/discord/Crashpad/completed/*
-	clean_glob "$HOME"/Library/Application\ Support/Code/Cache/*
-	clean_glob "$HOME"/Library/Application\ Support/Code/CachedData/*
-	clean_glob "$HOME"/Library/Application\ Support/Code/Crashpad/completed/*
-	clean_glob "$HOME"/Library/Application\ Support/Code/User/workspaceStorage/*
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/Service\ Worker/CacheStorage/*
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/CacheStorage/*
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/Application\ Cache/*
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/Application\ Cache/*
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Crashpad/completed/*
-
-	#.DS_Store files
-	clean_glob "$HOME"/Desktop/**/*/.DS_Store
+	clean_glob "$HOME"/.config/Slack/Service\ Worker/CacheStorage/*
+	clean_glob "$HOME"/.config/Slack/Cache/*
+	#clean_glob "$HOME"/Library/Application\ Support/discord/Cache/*
+	#clean_glob "$HOME"/Library/Application\ Support/discord/Code\ Cache/js*
+	#clean_glob "$HOME"/Library/Application\ Support/discord/Crashpad/completed/*
+	clean_glob "$HOME"/.config/Code/Cache/*
+	clean_glob "$HOME"/.config/Code/CachedData/*
+	clean_glob "$HOME"/.config/Code/Crashpad/completed/*
+	clean_glob "$HOME"/.config/Code/User/workspaceStorage/*
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/Service\ Worker/CacheStorage/*
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/CacheStorage/*
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/Application\ Cache/*
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/Application\ Cache/*
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Crashpad/completed/*
 
 	#tmp downloaded files with browsers
-	clean_glob "$HOME"/Library/Application\ Support/Chromium/Default/File\ System
-	clean_glob "$HOME"/Library/Application\ Support/Chromium/Profile\ [0-9]/File\ System
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/File\ System
-	clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/File\ System
-
-	#things related to pool (piscine)
-	clean_glob "$HOME"/Desktop/Piscine\ Rules\ *.mp4
-	clean_glob "$HOME"/Desktop/PLAY_ME.webloc
+	#clean_glob "$HOME"/Library/Application\ Support/Chromium/Default/File\ System
+	#clean_glob "$HOME"/Library/Application\ Support/Chromium/Profile\ [0-9]/File\ System
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/File\ System
+	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/File\ System
 
 	echo -ne "\033[0m"
 }
@@ -128,7 +112,7 @@ if [ $should_log -eq 1 ]; then
 fi
 
 #calculating the new available storage after cleaning
-Storage=$(df -h "$HOME" | grep "$HOME" | awk '{print($4)}' | tr 'i' 'B')
+Storage=$(du -sh "$HOME" | grep "$HOME" | awk '{print($1)}' | tr 'i' 'B')
 if [ "$Storage" == "0BB" ];
 then
 	Storage="0B"
@@ -137,7 +121,7 @@ sleep 1
 echo -e "\033[32m -- Available Storage After Cleaning : || $Storage || --\n\033[0m"
 
 echo -e	"\n	       report any issues to me in:"
-echo -e	"		   GitHub   ~> \033[4;1;34mombhd\033[0m"
-echo -e	"	   	   42 Slack ~> \033[4;1;34mobouykou\033[0m\n"
+echo -e	"		   GitHub   ~> \033[4;1;34mjose0xd\033[0m"
+echo -e	"	   	   42 Slack ~> \033[4;1;34mjarredon\033[0m\n"
 
 #installer

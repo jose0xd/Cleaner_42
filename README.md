@@ -2,11 +2,9 @@
 
 **Cleaner_42** script is linked to `cclean` command/program, and it's cleaning:
  - the Trash contents.
- - 42 caches from Library and Home directories.
  - Chrome Caches.
  - VSCode Caches and its workspaces cache storage.
  - Social Media Apps Caches, like Slack and Discord.
- - FileSystems which are located in browsers profiles directories, such as Chrome and Chromium.
  - Some other type of caches.
 
 ## How to install ?
@@ -38,8 +36,10 @@ Options:
 
 ## Note :
 
+This repository is a fork of https://github.com/ombhd/Cleaner_42 (42login: obouykou)
+The script changes to work under ubuntu on the 42 computers.
+
 Please, report any bug happening with you while installing or running the command
 
-Contact me on 42 slack **@obouykou** or post an issue here on Github
+Contact me on 42 slack **@jarredon** or post an issue here on Github
 
-42login : obouykou

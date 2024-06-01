@@ -34,15 +34,11 @@ while true; do
 	sleep 0.2
 	echo "  - the Trash contents."
 	sleep 0.2
-	echo "  - 42 caches from Library and Home directories."
-	sleep 0.2
 	echo "  - Chrome Caches."
 	sleep 0.2
 	echo "  - VSCode Caches and its workspaces cache storage."
 	sleep 0.2
 	echo "  - Social Media Apps Caches, like Slack and Discord."
-	sleep 0.2
-	echo "  - FileSystems which are located in browsers profiles directories, such as Chrome and Chromium."
 	sleep 0.2
 	echo -en "\n\033[33mDo you really want to install this program ? \033[0m\0"
 	read -r yn

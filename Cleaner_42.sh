@@ -35,7 +35,7 @@ then
 	exit 0
 fi
 #calculating the current available storage
-Storage=$(du -sh "$HOME" | grep "$HOME" | awk '{print($1)}' | tr 'i' 'B')
+Storage=$(df -h "$HOME" | grep "$HOME" | awk '{print($4)}' | tr 'i' 'B')
 if [ "$Storage" == "0BB" ];
 then
 	Storage="0B"
@@ -79,29 +79,26 @@ function clean {
 	clean_glob "$HOME"/.local/share/Trash/*
 
 	#General Caches files
-	clean_glob "$HOME"/.cache/*
+	# clean_glob "$HOME"/.cache/*
 
-	#Slack, VSCode, Discord and Chrome Caches
-	clean_glob "$HOME"/.config/Slack/Service\ Worker/CacheStorage/*
-	clean_glob "$HOME"/.config/Slack/Cache/*
-	#clean_glob "$HOME"/Library/Application\ Support/discord/Cache/*
-	#clean_glob "$HOME"/Library/Application\ Support/discord/Code\ Cache/js*
-	#clean_glob "$HOME"/Library/Application\ Support/discord/Crashpad/completed/*
+	#Slack, Discord, Firefox and VSCode
+	clean_glob "$HOME"/snap/slack/common/.cache/*
+	clean_glob "$HOME"/snap/discord/common/.cache/*
+	clean_glob "$HOME"/snap/firefox/common/.cache/*
+	clean_glob "$HOME"/snap/code/common/.cache/*
 	clean_glob "$HOME"/.config/Code/Cache/*
 	clean_glob "$HOME"/.config/Code/CachedData/*
 	clean_glob "$HOME"/.config/Code/Crashpad/completed/*
 	clean_glob "$HOME"/.config/Code/User/workspaceStorage/*
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/Service\ Worker/CacheStorage/*
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/Service\ Worker/CacheStorage/*
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/Application\ Cache/*
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/Application\ Cache/*
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Crashpad/completed/*
 
-	#tmp downloaded files with browsers
-	#clean_glob "$HOME"/Library/Application\ Support/Chromium/Default/File\ System
-	#clean_glob "$HOME"/Library/Application\ Support/Chromium/Profile\ [0-9]/File\ System
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Default/File\ System
-	#clean_glob "$HOME"/Library/Application\ Support/Google/Chrome/Profile\ [0-9]/File\ System
+	#Chrome
+	clean_glob "$HOME"/.config/google-chrome/Default/Service Worker/CacheStorage/*
+	clean_glob "$HOME"/.config/google-chrome/Profile\ [0-9]/Service Worker/CacheStorage/*
+	clean_glob "$HOME"/.config/google-chrome/Profile\ [0-9]/Cache/*
+	clean_glob "$HOME"/.config/google-chrome/Profile\ [0-9]/Code\ Cache/*
+	clean_glob "$HOME"/.config/google-chrome/Default/Cache/*
+	clean_glob "$HOME"/.config/google-chrome/Default/Code\ Cache/*
+	clean_glob "$HOME"/.config/google-chrome/Crash\ Reports/completed/*
 
 	echo -ne "\033[0m"
 }
@@ -112,7 +109,7 @@ if [ $should_log -eq 1 ]; then
 fi
 
 #calculating the new available storage after cleaning
-Storage=$(du -sh "$HOME" | grep "$HOME" | awk '{print($1)}' | tr 'i' 'B')
+Storage=$(df -h "$HOME" | grep "$HOME" | awk '{print($4)}' | tr 'i' 'B')
 if [ "$Storage" == "0BB" ];
 then
 	Storage="0B"
